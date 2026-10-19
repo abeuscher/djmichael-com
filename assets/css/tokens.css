@@ -8,11 +8,12 @@
 
 :root {
   /* Color ---------------------------------------------------------------- */
-  --orange: #FA5B0F;          /* accent only: buttons, small details, hover, focus */
+  --orange: #FA5B0F;          /* highlight only: hover underlines, small details, focus. Never a fill or text. */
   --black: #141413;           /* text, wordmark, footer */
   --white: #FFFFFF;           /* cards, form fields */
   --paper: #FAF9F5;           /* page background */
   --paper-2: #F0EEE6;         /* tinted band (contact block) */
+  --gray-100: #E8E6DF;        /* light buttons on dark surfaces */
   --gray-200: #E3E0D6;        /* hairlines */
   --gray-500: #87867F;        /* form borders, non-text UI (3.6:1 on white) */
   --gray-700: #5E5D59;        /* secondary text (6:1 on paper) */
@@ -34,6 +35,7 @@
   --fs-small: 0.9375rem;      /* 15px */
   --fs-xsmall: 0.8125rem;     /* 13px floor */
   --fs-h1: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);      /* 40 → 72 */
+  --fs-hero: clamp(2.25rem, 1.2rem + 2.6vw, 3.75rem);  /* 36 → 60, sized to the banner */
   --fs-h2: clamp(1.75rem, 1.35rem + 1.6vw, 2.75rem);   /* 28 → 44 */
   --fs-h3: 1.375rem;          /* 22px */
   --fs-quote: clamp(1.25rem, 1.1rem + 0.5vw, 1.5rem);
@@ -59,17 +61,11 @@
   --radius: 6px;
   --hairline: 1px solid var(--rule);
 
-  /* Buttons (primary) ----------------------------------------------------- */
-  --btn-bg: var(--orange);
-  --btn-fg: var(--black);
-  --btn-accent: var(--orange);
+  /* Buttons (primary). Dark surfaces override these in site.css. -------- */
+  --btn-bg: var(--black);
+  --btn-fg: var(--paper);
   --btn-bg-hover: var(--black);
-  --btn-fg-hover: var(--paper);
-  /* on dark backgrounds (hero overlay) */
-  --btn-dark-bg: var(--orange);
-  --btn-dark-fg: var(--black);
-  --btn-dark-bg-hover: var(--paper);
-  --btn-dark-fg-hover: var(--black);
+  --btn-fg-hover: var(--white);
 }
 
 @media (min-width: 64em) {
@@ -87,21 +83,4 @@
   --font-text: "Instrument Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --display-weight: 400;
   --display-tracking: -0.02em;
-}
-
-/* --------------------------------------------------------------------------
-   Variant: primary button
-   orange = near-black text on orange (5.7:1)
-   black  = black button, orange underline accent, orange on hover
-   -------------------------------------------------------------------------- */
-:root[data-button="black"] {
-  --btn-bg: var(--black);
-  --btn-fg: var(--white);
-  --btn-accent: var(--orange);
-  --btn-bg-hover: var(--orange);
-  --btn-fg-hover: var(--black);
-  --btn-dark-bg: var(--paper);
-  --btn-dark-fg: var(--black);
-  --btn-dark-bg-hover: var(--orange);
-  --btn-dark-fg-hover: var(--black);
 }
