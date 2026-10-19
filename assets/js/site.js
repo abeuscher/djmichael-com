@@ -7,12 +7,10 @@
 
   /* ------------------------------------------------------------------------
      Dev switcher (prototype only — delete with the losing variants)
-     ?dev=1 shows it. ?dev=1&type=b&button=black&hero=split sets variants.
+     ?dev=1 shows it. ?dev=1&type=b sets variants.
      ------------------------------------------------------------------------ */
   var VARIANTS = {
-    type: ['a', 'b'],
-    button: ['orange', 'black'],
-    hero: ['overlay', 'split']
+    type: ['a', 'b']
   };
 
   function initDevSwitcher() {
