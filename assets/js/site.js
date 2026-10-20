@@ -130,91 +130,149 @@
   }
 
   /* ------------------------------------------------------------------------
-     Lightbox: native <dialog>, images and videos, keys and swipe
+     Slideshow: native <dialog> over a CSS scroll-snap track. The browser
+     handles swipe and momentum; this adds buttons, keys, the counter,
+     loading nearby slides and pausing videos that leave the screen.
      ------------------------------------------------------------------------ */
-  function initLightbox() {
-    var dialog = document.querySelector('[data-lightbox-dialog]');
+  function initSlideshow() {
+    var dialog = document.querySelector('[data-slideshow]');
     var links = Array.prototype.slice.call(document.querySelectorAll('[data-lightbox]'));
     if (!dialog || !links.length || typeof dialog.showModal !== 'function') return;
 
-    var stage = dialog.querySelector('[data-lightbox-stage]');
-    var caption = dialog.querySelector('[data-lightbox-caption]');
-    var count = dialog.querySelector('[data-lightbox-count]');
+    var track = dialog.querySelector('[data-slideshow-track]');
+    var count = dialog.querySelector('[data-slideshow-count]');
+    var slides = [];
     var index = 0;
+    var target = null; // slide a button or key is scrolling to
     var opener = null;
 
-    function render() {
-      var link = links[index];
-      var media;
-      stage.textContent = '';
-      if (link.getAttribute('data-lightbox') === 'video') {
-        media = document.createElement('video');
-        media.controls = true;
-        media.playsInline = true;
-        media.preload = 'none';
-        media.poster = link.getAttribute('data-poster') || '';
-        media.src = link.getAttribute('href');
-        // Never autoplays: the visitor presses play.
-      } else {
+    function build() {
+      links.forEach(function (link, i) {
+        var slide = document.createElement('li');
+        slide.className = 'slideshow__slide';
+        slide.setAttribute('aria-roledescription', 'slide');
+        slide.setAttribute('aria-label', (i + 1) + ' of ' + links.length);
+
         var thumb = link.querySelector('img');
-        media = document.createElement('img');
-        media.src = link.getAttribute('href');
-        media.alt = thumb ? thumb.alt : '';
-        if (thumb) {
-          media.width = thumb.getAttribute('width');
-          media.height = thumb.getAttribute('height');
+        var media;
+        if (link.getAttribute('data-lightbox') === 'video') {
+          media = document.createElement('video');
+          media.controls = true;
+          media.playsInline = true;
+          media.preload = 'none';
+          media.poster = link.getAttribute('data-poster') || '';
+          media.setAttribute('aria-label', thumb ? thumb.alt : '');
+          // Never autoplays: the visitor presses play.
+        } else {
+          media = document.createElement('img');
+          media.alt = thumb ? thumb.alt : '';
+          media.decoding = 'async';
         }
-      }
-      stage.appendChild(media);
-      caption.textContent = link.getAttribute('data-caption') || '';
-      count.textContent = (index + 1) + ' / ' + links.length;
+        media.className = 'slideshow__media';
+        media.width = link.getAttribute('data-width') || (thumb && thumb.width) || 0;
+        media.height = link.getAttribute('data-height') || (thumb && thumb.height) || 0;
+        media.setAttribute('data-src', link.getAttribute('href'));
+
+        slide.appendChild(media);
+        track.appendChild(slide);
+        slides.push(media);
+      });
     }
 
-    function go(step) {
-      index = (index + step + links.length) % links.length;
-      render();
+    // Load the current slide and its neighbours only.
+    function loadAround(i) {
+      [i - 1, i, i + 1].forEach(function (n) {
+        var media = slides[(n + slides.length) % slides.length];
+        var src = media.getAttribute('data-src');
+        if (src) {
+          media.src = src;
+          media.removeAttribute('data-src');
+        }
+      });
+    }
+
+    function setIndex(i) {
+      if (i === index && count.textContent) return;
+      index = i;
+      count.textContent = (index + 1) + ' / ' + links.length;
+      loadAround(index);
+      slides.forEach(function (media, n) {
+        if (n !== index && media.tagName === 'VIDEO' && !media.paused) media.pause();
+      });
+    }
+
+    function step(by) {
+      scrollToIndex((target === null ? index : target) + by, true);
+    }
+
+    function scrollToIndex(i, smooth) {
+      i = (i + links.length) % links.length;
+      var instant = !smooth || reducedMotion.matches || Math.abs(i - index) > 1;
+      target = instant ? null : i;
+      track.scrollTo({ left: i * track.clientWidth, behavior: instant ? 'instant' : 'smooth' });
+      setIndex(i);
+    }
+
+    // Swipes update the index; scrolls we started are ignored until they land.
+    var ticking = false;
+    track.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        ticking = false;
+        var at = Math.round(track.scrollLeft / track.clientWidth);
+        if (target !== null) {
+          if (at === target && track.scrollLeft % track.clientWidth < 2) target = null;
+          return;
+        }
+        setIndex(at);
+      });
+    }, { passive: true });
+    track.addEventListener('scrollend', function () { target = null; });
+
+    function open(i, link) {
+      if (!slides.length) build();
+      opener = link;
+      dialog.showModal();
+      count.textContent = '';
+      scrollToIndex(i, false);
     }
 
     links.forEach(function (link, i) {
       link.addEventListener('click', function (e) {
         e.preventDefault();
-        opener = link;
-        index = i;
-        render();
-        dialog.showModal();
+        open(i, link);
       });
     });
 
-    dialog.querySelector('[data-lightbox-prev]').addEventListener('click', function () { go(-1); });
-    dialog.querySelector('[data-lightbox-next]').addEventListener('click', function () { go(1); });
-    dialog.querySelector('[data-lightbox-close]').addEventListener('click', function () { dialog.close(); });
+    var all = document.querySelector('[data-gallery-all]');
+    if (all) {
+      all.hidden = false;
+      all.querySelector('button').addEventListener('click', function () { open(0, this); });
+    }
+
+    dialog.querySelector('[data-slideshow-prev]').addEventListener('click', function () { step(-1); });
+    dialog.querySelector('[data-slideshow-next]').addEventListener('click', function () { step(1); });
+    dialog.querySelector('[data-slideshow-close]').addEventListener('click', function () { dialog.close(); });
 
     dialog.addEventListener('keydown', function (e) {
-      if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
-      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+      if (e.target.tagName === 'VIDEO') return; // arrows seek inside a focused video
+      if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
     });
 
-    // Click on the dark area (not the media or buttons) closes.
+    // A click on the dark area around the media closes.
     dialog.addEventListener('click', function (e) {
-      if (e.target === dialog || e.target.classList.contains('lightbox__frame')) dialog.close();
+      if (e.target.classList.contains('slideshow__slide')) dialog.close();
     });
 
-    var startX = null;
-    var startY = null;
-    dialog.addEventListener('touchstart', function (e) {
-      startX = e.touches[0].clientX;
-      startY = e.touches[0].clientY;
-    }, { passive: true });
-    dialog.addEventListener('touchend', function (e) {
-      if (startX === null) return;
-      var dx = e.changedTouches[0].clientX - startX;
-      var dy = e.changedTouches[0].clientY - startY;
-      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) go(dx < 0 ? 1 : -1);
-      startX = null;
+    // Keep the current slide in place when the window resizes or rotates.
+    window.addEventListener('resize', function () {
+      if (dialog.open) track.scrollTo({ left: index * track.clientWidth, behavior: 'instant' });
     });
 
     dialog.addEventListener('close', function () {
-      stage.textContent = ''; // stops any playing video
+      slides.forEach(function (media) { if (media.tagName === 'VIDEO') media.pause(); });
       if (opener) opener.focus();
     });
   }
@@ -303,7 +361,7 @@
   initDevSwitcher();
   initMenu();
   initHeroVideo();
-  initLightbox();
+  initSlideshow();
   initContactForm();
   initYear();
 })();

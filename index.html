@@ -103,7 +103,7 @@
         <!-- Banner art is darkened on the left to hold the text. A mobile crop can be added as a <picture> source. -->
         <img class="hero__img" src="assets/img/header-come-couple-dancing.jpg" width="1920" height="600" alt="A bride and groom dancing in a pool of warm light, surrounded by guests on a crowded dance floor" fetchpriority="high">
         <!-- Optional loop: uncomment when the clip exists. site.js starts it unless the visitor prefers reduced motion.
-        <video class="hero__video" muted loop playsinline preload="none" poster="assets/video/hero-poster.svg" aria-hidden="true" data-hero-video>
+        <video class="hero__video" muted loop playsinline preload="none" poster="assets/img/header-come-couple-dancing.jpg" aria-hidden="true" data-hero-video>
           <source data-src="assets/video/hero-loop.mp4" type="video/mp4">
         </video>
         -->
@@ -201,53 +201,138 @@
     <section class="section section--rule gallery" data-part="gallery" aria-labelledby="gallery-title">
       <div class="container">
         <h2 class="section__title" id="gallery-title">Pictures and video</h2>
-        <!-- Each tile links to the full-size file, so it still works with JS off. JS opens it in the lightbox. -->
+        <!-- One list feeds both the grid and the slideshow. The first 8 show as tiles;
+             the rest only appear in the slideshow. Each tile links to its file, so it works with JS off. -->
         <ul class="gallery__grid">
           <li class="gallery__item">
-            <!-- TODO: clip files arrive from Michael; the href points at the expected path. -->
-            <a class="gallery__link gallery__link--video" href="assets/video/gallery-video-1.mp4" data-lightbox="video" data-poster="assets/video/gallery-video-1-poster.svg" data-caption="Video placeholder: phone clip">
-              <img class="gallery__img" src="assets/video/gallery-video-1-poster.svg" width="1080" height="1920" alt="Video: phone clip from the dance floor" loading="lazy">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-2109.mp4" data-lightbox="video" data-poster="assets/video/web/img-2109-poster.jpg" data-width="1280" data-height="720">
+              <img class="gallery__img" src="assets/video/web/img-2109-poster.jpg" width="1280" height="720" alt="Video: Guests with their hands up on a packed dance floor" loading="lazy">
               <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
             </a>
           </li>
           <li class="gallery__item">
-            <a class="gallery__link" href="assets/img/gallery-photo-1.svg" data-lightbox="image" data-caption="Photo placeholder: first dance">
-              <img class="gallery__img" src="assets/img/gallery-photo-1.svg" width="1800" height="1200" alt="Placeholder: first dance" loading="lazy">
+            <a class="gallery__link" href="assets/img/web/guests-laughing-800.jpg" data-lightbox="image" data-width="800" data-height="533">
+              <img class="gallery__img" src="assets/img/web/guests-laughing-800.jpg" width="800" height="533" alt="Guests laughing and dancing" loading="lazy">
             </a>
           </li>
           <li class="gallery__item">
-            <a class="gallery__link gallery__link--video" href="assets/video/gallery-video-2.mp4" data-lightbox="video" data-poster="assets/video/gallery-video-2-poster.svg" data-caption="Video placeholder: grand entrance">
-              <img class="gallery__img" src="assets/video/gallery-video-2-poster.svg" width="1920" height="1080" alt="Video: grand entrance" loading="lazy">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-3747.mp4" data-lightbox="video" data-poster="assets/video/web/img-3747-poster.jpg" data-width="1280" data-height="720">
+              <img class="gallery__img" src="assets/video/web/img-3747-poster.jpg" width="1280" height="720" alt="Video: Dancing under a string-lit tent" loading="lazy">
               <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
             </a>
           </li>
           <li class="gallery__item">
-            <a class="gallery__link" href="assets/img/gallery-photo-2.svg" data-lightbox="image" data-caption="Photo placeholder: toast">
-              <img class="gallery__img" src="assets/img/gallery-photo-2.svg" width="1200" height="1800" alt="Placeholder: toast" loading="lazy">
+            <a class="gallery__link" href="assets/img/web/bride-dancing-800.jpg" data-lightbox="image" data-width="788" data-height="526">
+              <img class="gallery__img" src="assets/img/web/bride-dancing-800.jpg" width="788" height="526" alt="The bride dancing with her guests" loading="lazy">
             </a>
           </li>
           <li class="gallery__item">
-            <a class="gallery__link" href="assets/img/gallery-photo-3.svg" data-lightbox="image" data-caption="Photo placeholder: dance floor">
-              <img class="gallery__img" src="assets/img/gallery-photo-3.svg" width="1800" height="1200" alt="Placeholder: dance floor" loading="lazy">
+            <a class="gallery__link" href="assets/img/web/uplit-hall-red-1600.jpg" data-lightbox="image" data-width="1600" data-height="1200">
+              <img class="gallery__img" src="assets/img/web/uplit-hall-red-800.jpg" width="800" height="600" alt="A reception hall with red uplighting and a full dance floor" loading="lazy">
             </a>
           </li>
           <li class="gallery__item">
-            <a class="gallery__link gallery__link--video" href="assets/video/gallery-video-3.mp4" data-lightbox="video" data-poster="assets/video/gallery-video-3-poster.svg" data-caption="Video placeholder: last song">
-              <img class="gallery__img" src="assets/video/gallery-video-3-poster.svg" width="1080" height="1920" alt="Video: last song of the night" loading="lazy">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-3729.mp4" data-lightbox="video" data-poster="assets/video/web/img-3729-poster.jpg" data-width="1280" data-height="720">
+              <img class="gallery__img" src="assets/video/web/img-3729-poster.jpg" width="1280" height="720" alt="Video: A full dance floor in a timber-frame barn" loading="lazy">
               <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
             </a>
           </li>
           <li class="gallery__item">
-            <a class="gallery__link" href="assets/img/gallery-photo-4.svg" data-lightbox="image" data-caption="Photo placeholder: DJ booth in an uplit room">
-              <img class="gallery__img" src="assets/img/gallery-photo-4.svg" width="1600" height="2000" alt="Placeholder: DJ booth in an uplit room" loading="lazy">
+            <a class="gallery__link" href="assets/img/web/crowd-lift-800.jpg" data-lightbox="image" data-width="604" data-height="402">
+              <img class="gallery__img" src="assets/img/web/crowd-lift-800.jpg" width="604" height="402" alt="Guests lifting a friend overhead on the dance floor" loading="lazy">
             </a>
           </li>
           <li class="gallery__item">
-            <a class="gallery__link" href="assets/img/gallery-photo-5.svg" data-lightbox="image" data-caption="Photo placeholder: tent reception">
-              <img class="gallery__img" src="assets/img/gallery-photo-5.svg" width="1800" height="1200" alt="Placeholder: tent reception" loading="lazy">
+            <a class="gallery__link" href="assets/img/web/tie-dance-800.jpg" data-lightbox="image" data-width="788" data-height="526">
+              <img class="gallery__img" src="assets/img/web/tie-dance-800.jpg" width="788" height="526" alt="Two guests dancing, one with a tie around his head" loading="lazy">
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link" href="assets/img/web/friends-dancing-800.jpg" data-lightbox="image" data-width="800" data-height="533">
+              <img class="gallery__img" src="assets/img/web/friends-dancing-800.jpg" width="800" height="533" alt="Friends dancing together" loading="lazy">
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-2105.mp4" data-lightbox="video" data-poster="assets/video/web/img-2105-poster.jpg" data-width="1280" data-height="720">
+              <img class="gallery__img" src="assets/video/web/img-2105-poster.jpg" width="1280" height="720" alt="Video: A crowded dance floor at a reception" loading="lazy">
+              <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link" href="assets/img/web/all-ages-dancing-800.jpg" data-lightbox="image" data-width="800" data-height="533">
+              <img class="gallery__img" src="assets/img/web/all-ages-dancing-800.jpg" width="800" height="533" alt="Guests of all ages on the dance floor" loading="lazy">
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-3570.mp4" data-lightbox="video" data-poster="assets/video/web/img-3570-poster.jpg" data-width="1280" data-height="720">
+              <img class="gallery__img" src="assets/video/web/img-3570-poster.jpg" width="1280" height="720" alt="Video: A videographer filming the dance floor" loading="lazy">
+              <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link" href="assets/img/web/couple-on-the-floor-800.jpg" data-lightbox="image" data-width="788" data-height="526">
+              <img class="gallery__img" src="assets/img/web/couple-on-the-floor-800.jpg" width="788" height="526" alt="The couple dancing in the middle of their guests" loading="lazy">
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-3605.mp4" data-lightbox="video" data-poster="assets/video/web/img-3605-poster.jpg" data-width="1280" data-height="720">
+              <img class="gallery__img" src="assets/video/web/img-3605-poster.jpg" width="1280" height="720" alt="Video: Dancing under disco balls and draped fabric" loading="lazy">
+              <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link" href="assets/img/web/spotlight-dance-800.jpg" data-lightbox="image" data-width="788" data-height="526">
+              <img class="gallery__img" src="assets/img/web/spotlight-dance-800.jpg" width="788" height="526" alt="The couple dancing in a spotlight, surrounded by guests" loading="lazy">
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-3748.mp4" data-lightbox="video" data-poster="assets/video/web/img-3748-poster.jpg" data-width="1280" data-height="720">
+              <img class="gallery__img" src="assets/video/web/img-3748-poster.jpg" width="1280" height="720" alt="Video: Guests dancing under a purple-lit tent" loading="lazy">
+              <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link" href="assets/img/web/uplit-ballroom-purple-1600.jpg" data-lightbox="image" data-width="1600" data-height="1200">
+              <img class="gallery__img" src="assets/img/web/uplit-ballroom-purple-800.jpg" width="800" height="600" alt="A ballroom with purple uplighting, seen from above" loading="lazy">
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-3879.mp4" data-lightbox="video" data-poster="assets/video/web/img-3879-poster.jpg" data-width="1280" data-height="720">
+              <img class="gallery__img" src="assets/video/web/img-3879-poster.jpg" width="1280" height="720" alt="Video: Dancing in a barn with string lights" loading="lazy">
+              <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link" href="assets/img/web/uplit-hall-blue-1600.jpg" data-lightbox="image" data-width="1600" data-height="1200">
+              <img class="gallery__img" src="assets/img/web/uplit-hall-blue-800.jpg" width="800" height="600" alt="A hall with blue uplighting and glow sticks on the dance floor" loading="lazy">
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-4029.mp4" data-lightbox="video" data-poster="assets/video/web/img-4029-poster.jpg" data-width="1280" data-height="720">
+              <img class="gallery__img" src="assets/video/web/img-4029-poster.jpg" width="1280" height="720" alt="Video: Hands in the air on a crowded dance floor" loading="lazy">
+              <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-4036.mp4" data-lightbox="video" data-poster="assets/video/web/img-4036-poster.jpg" data-width="1280" data-height="720">
+              <img class="gallery__img" src="assets/video/web/img-4036-poster.jpg" width="1280" height="720" alt="Video: A dance floor lit in blue" loading="lazy">
+              <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-4167.mp4" data-lightbox="video" data-poster="assets/video/web/img-4167-poster.jpg" data-width="1280" data-height="720">
+              <img class="gallery__img" src="assets/video/web/img-4167-poster.jpg" width="1280" height="720" alt="Video: An uplit tent with cocktail tables at night" loading="lazy">
+              <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
+            </a>
+          </li>
+          <li class="gallery__item gallery__item--more">
+            <a class="gallery__link gallery__link--video" href="assets/video/web/img-1612.mp4" data-lightbox="video" data-poster="assets/video/web/img-1612-poster.jpg" data-width="720" data-height="1280">
+              <img class="gallery__img" src="assets/video/web/img-1612-poster.jpg" width="720" height="1280" alt="Video: Michael at the DJ booth during a reception" loading="lazy">
+              <span class="gallery__play" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M6 3.5v13l11-6.5z"/></svg></span>
             </a>
           </li>
         </ul>
+        <p class="gallery__all" hidden data-gallery-all><button class="link-arrow gallery__all-btn" type="button">View all 23 photos and videos</button></p>
         <!-- PLACEHOLDER: photographer name TBD. -->
         <p class="gallery__caption">Photos by <span class="gallery__credit">Photographer Name</span> · More on Instagram <a class="link-arrow" href="https://www.instagram.com/djmichaelo/" target="_blank" rel="noopener">@djmichaelo<span class="visually-hidden"> (opens in a new tab)</span></a></p>
       </div>
@@ -259,8 +344,8 @@
       <div class="container">
         <div class="about-short__inner">
         <div class="about-short__media">
-          <!-- PLACEHOLDER: Michael working the booth, mid-event. -->
-          <img class="about-short__img" src="assets/img/about-booth.svg" width="1600" height="2000" alt="Michael at the DJ booth during a wedding reception" loading="lazy">
+          <!-- Still from a phone clip (IMG_1612). Swap for a photo of Michael at the booth when one exists. -->
+          <img class="about-short__img" src="assets/img/web/michael-at-the-booth-800.jpg" width="800" height="1000" alt="Michael at the DJ booth during a wedding reception" loading="lazy">
         </div>
         <div class="about-short__body">
           <h2 class="section__title" id="about-title">About Michael</h2>
@@ -314,26 +399,22 @@
         <h2 class="section__title" id="services-title">Services</h2>
         <ul class="services__list">
           <li class="service">
-            <!-- PLACEHOLDER photo -->
-            <img class="service__img" src="assets/img/service-reception.svg" width="1800" height="1200" alt="" loading="lazy">
+            <img class="service__img" src="assets/img/web/tie-dance-800.jpg" width="788" height="526" alt="" loading="lazy">
             <h3 class="service__title">Reception DJ and MC</h3>
             <p class="service__text">Music built around your taste, read live from the room. Announcements that are short, rehearsed and on time.</p>
           </li>
           <li class="service">
-            <!-- PLACEHOLDER photo -->
-            <img class="service__img" src="assets/img/service-ceremony.svg" width="1800" height="1200" alt="" loading="lazy">
+            <img class="service__img" src="assets/img/web/tent-cocktail-hour-1200.jpg" width="1200" height="800" alt="" loading="lazy">
             <h3 class="service__title">Ceremony and cocktail hour</h3>
             <p class="service__text">Separate systems for each space, wireless and lapel mics, and battery power for sites without outlets.</p>
           </li>
           <li class="service">
-            <!-- PLACEHOLDER photo -->
-            <img class="service__img" src="assets/img/service-lighting.svg" width="1800" height="1200" alt="" loading="lazy">
+            <img class="service__img" src="assets/img/web/uplit-ballroom-purple-800.jpg" width="800" height="600" alt="" loading="lazy">
             <h3 class="service__title">Lighting</h3>
             <p class="service__text">Battery-powered LED uplighting in any color, for rooms and tents. Dance lighting is available too.</p>
           </li>
           <li class="service">
-            <!-- PLACEHOLDER photo -->
-            <img class="service__img" src="assets/img/service-events.svg" width="1800" height="1200" alt="" loading="lazy">
+            <img class="service__img" src="assets/img/web/uplit-hall-blue-800.jpg" width="800" height="600" alt="" loading="lazy">
             <h3 class="service__title">Corporate and private events</h3>
             <p class="service__text">The same gear and the same approach for company parties, milestones and celebrations.</p>
           </li>
@@ -459,17 +540,13 @@
   </footer>
   <!-- /part: footer -->
 
-  <!-- part: lightbox (JS only) -->
-  <dialog class="lightbox" aria-label="Pictures and video" data-lightbox-dialog>
-    <div class="lightbox__frame">
-      <figure class="lightbox__figure">
-        <div class="lightbox__stage" data-lightbox-stage></div>
-        <figcaption class="lightbox__caption"><span data-lightbox-caption></span> <span class="lightbox__count" data-lightbox-count></span></figcaption>
-      </figure>
-      <button class="lightbox__btn lightbox__btn--prev" type="button" data-lightbox-prev><span class="visually-hidden">Previous</span><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <button class="lightbox__btn lightbox__btn--next" type="button" data-lightbox-next><span class="visually-hidden">Next</span><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button>
-      <button class="lightbox__btn lightbox__btn--close" type="button" data-lightbox-close><span class="visually-hidden">Close</span><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
-    </div>
+  <!-- part: slideshow (JS only). Slides are built from the gallery list. -->
+  <dialog class="slideshow" aria-label="Pictures and video" aria-roledescription="carousel" data-slideshow>
+    <ul class="slideshow__track" tabindex="0" aria-label="Slides" data-slideshow-track></ul>
+    <p class="slideshow__count" aria-live="polite" data-slideshow-count></p>
+    <button class="slideshow__btn slideshow__btn--prev" type="button" data-slideshow-prev><span class="visually-hidden">Previous</span><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M15 5l-7 7 7 7"/></svg></button>
+    <button class="slideshow__btn slideshow__btn--next" type="button" data-slideshow-next><span class="visually-hidden">Next</span><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 5l7 7-7 7"/></svg></button>
+    <button class="slideshow__btn slideshow__btn--close" type="button" data-slideshow-close><span class="visually-hidden">Close</span><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </dialog>
 </body>
 </html>
