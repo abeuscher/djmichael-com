@@ -100,7 +100,9 @@ a:hover { text-decoration-color: var(--orange); }
 .link-arrow::after { content: " →"; }
 .link-arrow:hover { border-bottom-color: var(--orange); }
 
-/* Buttons ----------------------------------------------------------------- */
+/* Buttons -----------------------------------------------------------------
+   Orange is a highlight, not a fill: it shows as an underline on hover.
+   Dark contexts (header, hero) swap the button tokens to light gray. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -113,30 +115,44 @@ a:hover { text-decoration-color: var(--orange); }
   text-decoration: none;
   white-space: nowrap;
   cursor: pointer;
-  transition: background-color 0.15s, color 0.15s;
+  transition: background-color 0.15s, color 0.15s, box-shadow 0.15s;
 }
 
 .btn--primary {
   background: var(--btn-bg);
   color: var(--btn-fg);
-  box-shadow: inset 0 -3px 0 var(--btn-accent); /* orange underline in the black variant */
 }
 .btn--primary:hover {
   background: var(--btn-bg-hover);
   color: var(--btn-fg-hover);
-  box-shadow: none;
+  box-shadow: inset 0 -3px 0 var(--orange);
 }
 
 .btn--large { min-height: 52px; padding: 0.875rem 1.75rem; font-size: 1rem; }
 .btn--block { display: flex; width: 100%; }
 .btn--header { min-height: 40px; padding: 0.5rem 1rem; }
 
+/* Dark surfaces ------------------------------------------------------------ */
+.site-header,
+.hero,
+.site-footer {
+  --text: var(--paper);
+  --text-muted: rgb(250 249 245 / 0.72);
+  --rule: rgb(250 249 245 / 0.16);
+  --hairline: 1px solid var(--rule);
+  --btn-bg: var(--gray-100);
+  --btn-fg: var(--black);
+  --btn-bg-hover: var(--white);
+  --btn-fg-hover: var(--black);
+  color: var(--text);
+}
+
 /* Header ------------------------------------------------------------------ */
 .site-header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--paper);
+  background: var(--black);
   border-bottom: var(--hairline);
 }
 
@@ -210,7 +226,7 @@ a:hover { text-decoration-color: var(--orange); }
     position: fixed;
     inset: var(--header-h) 0 0 0;
     padding: var(--s-2) var(--gutter) var(--s-5);
-    background: var(--paper);
+    background: var(--black);
     overflow-y: auto;
     display: none;
   }
@@ -279,86 +295,55 @@ a:hover { text-decoration-color: var(--orange); }
   border-top: 2px solid var(--orange);
 }
 
-/* Hero -------------------------------------------------------------------- */
+/* Hero --------------------------------------------------------------------
+   The art is a 1920×600 banner, darkened on the left to hold text.
+   Mobile: image cropped to the couple, text below on black.
+   48em+: text over the image's dark left side; the band keeps the art's
+   aspect ratio (with a floor for the text) so the proof strip stays above
+   the fold. */
 .hero { position: relative; background: var(--black); }
-.hero__media { position: relative; overflow: hidden; }
+.hero__media { position: relative; overflow: hidden; aspect-ratio: 16 / 9; }
 .hero__img, .hero__video {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: 58% 50%; /* the couple sits just right of center */
 }
-.hero__video { position: absolute; inset: 0; }
-.hero__eyebrow { margin-bottom: var(--s-3); }
+.hero__content { padding-block: var(--s-4) var(--s-5); }
+.hero__eyebrow { margin-bottom: var(--s-2); color: var(--text-muted); }
 .hero__title {
-  font-size: var(--fs-h1);
+  font-size: var(--fs-hero);
   line-height: var(--lh-tight);
-  max-width: 12ch;
 }
 .hero__subhead {
-  margin-top: var(--s-3);
-  font-size: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+  margin-top: var(--s-2);
+  font-size: clamp(1.0625rem, 0.95rem + 0.4vw, 1.3125rem);
   line-height: 1.45;
   max-width: 34ch;
+  color: rgb(250 249 245 / 0.88);
 }
-.hero__cta { margin-top: var(--s-4); }
+.hero__cta { margin-top: var(--s-3); }
 
-/* Variant: overlay — text sits on a flat scrim over the image */
-:root[data-hero="overlay"] .hero {
-  display: grid;
-  min-height: clamp(28rem, 68vh, 54rem);
-  color: var(--white);
-}
 @media (min-width: 48em) {
-  :root[data-hero="overlay"] .hero { min-height: clamp(34rem, 82vh, 54rem); }
-}
-:root[data-hero="overlay"] .hero > * { grid-area: 1 / 1; }
-:root[data-hero="overlay"] .hero__media::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgb(20 20 19 / 0.52); /* flat scrim, no gradient */
-}
-:root[data-hero="overlay"] .hero__content {
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  padding-block: var(--s-5);
-}
-:root[data-hero="overlay"] .hero__eyebrow { color: rgb(255 255 255 / 0.85); }
-:root[data-hero="overlay"] .hero__subhead { color: rgb(255 255 255 / 0.9); }
-:root[data-hero="overlay"] .hero .btn--primary {
-  background: var(--btn-dark-bg);
-  color: var(--btn-dark-fg);
-}
-:root[data-hero="overlay"] .hero .btn--primary:hover {
-  background: var(--btn-dark-bg-hover);
-  color: var(--btn-dark-fg-hover);
-}
-
-/* Variant: split — text beside the image on paper */
-:root[data-hero="split"] .hero { background: var(--paper); }
-:root[data-hero="split"] .hero__media { aspect-ratio: 4 / 3; }
-:root[data-hero="split"] .hero__content { padding-block: var(--s-5) var(--s-6); }
-:root[data-hero="split"] .hero__eyebrow { color: var(--text-muted); }
-:root[data-hero="split"] .hero__subhead { color: var(--text-muted); }
-
-@media (min-width: 64em) {
-  :root[data-hero="split"] .hero {
+  .hero {
     display: grid;
-    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
-    min-height: clamp(34rem, 78vh, 50rem);
+    /* 31.25vw = the art's 600/1920 ratio; floor for the text, cap for wide screens */
+    min-height: clamp(21rem, 31.25vw, 42rem);
   }
-  :root[data-hero="split"] .hero__media { grid-column: 2; grid-row: 1; aspect-ratio: auto; }
-  :root[data-hero="split"] .hero__content {
-    grid-column: 1; grid-row: 1;
+  .hero > * { grid-area: 1 / 1; }
+  .hero__media { aspect-ratio: auto; }
+  /* Anchor left: when the band is cropped, the couple slides right, away from the text */
+  .hero__img, .hero__video { object-position: 0% 50%; }
+  .hero__content {
+    position: relative;
     display: flex;
     align-items: center;
-    max-width: none;
-    padding-block: var(--s-6);
-    /* align text with the page container's left edge */
-    padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2));
-    padding-right: var(--s-6);
+    padding-block: var(--s-4);
   }
+  .hero__text { max-width: min(44%, 36rem); }
+  .hero__cta { margin-top: var(--s-4); }
 }
 
 /* Proof strip --------------------------------------------------------------- */
@@ -388,7 +373,7 @@ a.proof__link:hover .proof__platform { text-decoration: underline; text-decorati
 
 .proof__rating {
   font-family: var(--font-display);
-  font-size: var(--fs-stat);
+  font-size: clamp(1.75rem, 1rem + 1.6vw, 2.5rem);
   font-weight: var(--display-weight);
   letter-spacing: var(--display-tracking);
   line-height: 1.1;
@@ -403,16 +388,21 @@ a.proof__link:hover .proof__platform { text-decoration: underline; text-decorati
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-weight: 500;
+  white-space: nowrap;
   margin-top: var(--s-1);
 }
 .icon--external { fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; }
 
 @media (min-width: 48em) {
   .proof__list { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .proof__platform { letter-spacing: 0.02em; }
   .proof__item { border-bottom: 0; border-right: var(--hairline); }
   .proof__item:last-child { border-right: 0; }
   .proof__item--award { grid-column: auto; }
   .proof__link { padding: var(--s-4) var(--s-2); }
+}
+@media (min-width: 64em) {
+  .proof__platform { letter-spacing: 0.06em; }
 }
 
 /* Testimonials ------------------------------------------------------------ */
