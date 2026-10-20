@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en" data-type="a">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact DJ Michael | Wedding DJ in Boston and Portland, Maine</title>
+  <meta name="description" content="Tell DJ Michael about your wedding or event. He&#x27;ll reply by email, usually within a day.">
+  <link rel="canonical" href="https://djmichael.com/contact">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact DJ Michael | Wedding DJ in Boston and Portland, Maine">
+  <meta property="og:description" content="Tell DJ Michael about your wedding or event. He&#x27;ll reply by email, usually within a day.">
+  <meta property="og:url" content="https://djmichael.com/contact">
+  <meta name="theme-color" content="#141413">
+
+  <!-- Fonts: both pairings load for the prototype. Phase 2 self-hosts only the winner. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Instrument+Sans:wght@400;500;600&display=swap">
+
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/site.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="assets/js/site.js" defer></script>
+
+  <!-- GA4: carry over in Phase 2.
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7Y08SVNRHQ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-7Y08SVNRHQ');
+  </script>
+  -->
+
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- part: header -->
+  <header class="site-header" data-part="header">
+    <div class="site-header__inner container">
+      <a class="wordmark" href="index.html">
+        <span class="wordmark__name">DJ Michael</span>
+        <span class="wordmark__tagline">Wedding DJ · Boston and Portland, ME</span>
+      </a>
+
+      <nav class="site-nav" id="site-menu" aria-label="Main">
+        <ul class="site-nav__list">
+          <li class="site-nav__item site-nav__item--mobile"><a class="site-nav__link" href="index.html">Home</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="about.html">About</a></li>
+          <li class="site-nav__item"><a class="site-nav__link" href="faq.html">FAQ</a></li>
+        </ul>
+        <div class="site-nav__extra">
+          <a class="btn btn--primary btn--block" href="contact.html">Contact me</a>
+          <a class="site-nav__email" href="mailto:michael@djmichael.com">michael@djmichael.com</a>
+        </div>
+      </nav>
+
+      <a class="btn btn--primary btn--header site-header__cta" href="contact.html">Contact me</a>
+
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+        <span class="visually-hidden">Menu</span>
+        <svg class="menu-toggle__icon" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path class="menu-toggle__open" d="M3 7h18M3 12h18M3 17h18" />
+          <path class="menu-toggle__close" d="M5 5l14 14M19 5L5 19" />
+        </svg>
+      </button>
+    </div>
+  </header>
+  <!-- /part: header -->
+
+  <main id="main">
+
+    <!-- part: page-head -->
+    <section class="page-head" data-part="page-head" aria-labelledby="page-title">
+      <div class="container">
+        <h1 class="page-head__title" id="page-title">Contact me</h1>
+        <p class="page-head__intro">Tell me about your date and venue, and I'll get back to you, usually within a day.</p>
+      </div>
+    </section>
+    <!-- /part: page-head -->
+
+    <!-- part: contact-block (same partial as home; heading comes from the page head here) -->
+  <section class="section contact-block contact-block--page" id="contact" data-part="contact-block" aria-label="Contact form">
+    <div class="contact-block__inner container">
+      <div class="contact-block__main">
+
+        <!-- TODO (Phase 2): post to the native WordPress handler (admin-post.php), verify nonce,
+             honeypot and time-to-submit server-side, then email Michael. The prototype sends nothing. -->
+        <form class="contact-form" action="#contact" method="post" data-contact-form>
+          <div class="contact-form__grid">
+            <div class="field">
+              <label class="field__label" for="cf-names">Your names</label>
+              <input class="field__input" id="cf-names" name="names" type="text" autocomplete="name" required aria-describedby="cf-names-error">
+              <p class="field__error" id="cf-names-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="cf-email">Email</label>
+              <input class="field__input" id="cf-email" name="email" type="email" autocomplete="email" required aria-describedby="cf-email-error">
+              <p class="field__error" id="cf-email-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="cf-date">Event date</label>
+              <input class="field__input" id="cf-date" name="event_date" type="date" required aria-describedby="cf-date-error">
+              <p class="field__error" id="cf-date-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="cf-type">Event type</label>
+              <select class="field__input field__select" id="cf-type" name="event_type" required aria-describedby="cf-type-error">
+                <option value="">Choose one</option>
+                <option>Wedding</option>
+                <option>Corporate</option>
+                <option>Private event</option>
+                <option>Other</option>
+              </select>
+              <p class="field__error" id="cf-type-error" hidden></p>
+            </div>
+            <div class="field">
+              <label class="field__label" for="cf-venue">Venue or town <span class="field__optional">(optional)</span></label>
+              <input class="field__input" id="cf-venue" name="venue" type="text">
+            </div>
+            <div class="field">
+              <label class="field__label" for="cf-guests">Approximate guest count <span class="field__optional">(optional)</span></label>
+              <input class="field__input" id="cf-guests" name="guests" type="number" min="1" step="1" inputmode="numeric" aria-describedby="cf-guests-error">
+              <p class="field__error" id="cf-guests-error" hidden></p>
+            </div>
+            <div class="field field--full">
+              <label class="field__label" for="cf-source">How did you hear about me? <span class="field__optional">(optional)</span></label>
+              <select class="field__input field__select" id="cf-source" name="source">
+                <option value="">Choose one</option>
+                <option>WeddingWire</option>
+                <option>The Knot</option>
+                <option>Yelp</option>
+                <option>Zola</option>
+                <option>Google</option>
+                <option>Instagram</option>
+                <option>Friend or family</option>
+                <option>Venue or vendor</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="field field--full">
+              <label class="field__label" for="cf-message">Message <span class="field__optional">(optional)</span></label>
+              <textarea class="field__input field__textarea" id="cf-message" name="message" rows="5"></textarea>
+            </div>
+            <!-- Honeypot: humans never see or fill this. -->
+            <div class="field field--hp" aria-hidden="true">
+              <label for="cf-website">Website</label>
+              <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <input type="hidden" name="started_at" value="" data-started-at>
+          </div>
+          <div class="contact-form__actions">
+            <button class="btn btn--primary btn--large" type="submit">Send</button>
+          </div>
+          <p class="contact-form__error" role="alert" hidden data-form-error>That didn't send. Please try again or email <a href="mailto:michael@djmichael.com">michael@djmichael.com</a>.</p>
+        </form>
+        <div class="contact-form__success" role="status" tabindex="-1" hidden data-form-success>
+          <p>Thanks. I'll reply by email soon.</p>
+        </div>
+      </div>
+
+      <aside class="contact-block__aside" aria-label="Other ways to reach me">
+        <p class="contact-block__label">Or email me directly</p>
+        <p class="contact-block__email"><a href="mailto:michael@djmichael.com">michael@djmichael.com</a></p>
+        <p class="contact-block__instagram">Instagram <a href="https://www.instagram.com/djmichaelo/" target="_blank" rel="noopener">@djmichaelo<span class="visually-hidden"> (opens in a new tab)</span></a></p>
+        <p class="contact-block__note">I'm usually booked 1–2 years out. If I'm taken on your date, I'll help you find someone great.</p>
+      </aside>
+    </div>
+  </section>
+    <!-- /part: contact-block -->
+
+  </main>
+
+  <!-- part: footer -->
+  <footer class="site-footer" data-part="footer">
+    <div class="site-footer__inner container">
+      <div class="site-footer__brand">
+        <p class="site-footer__name">DJ Michael</p>
+        <p class="site-footer__meta">Boston and Portland, ME</p>
+        <p class="site-footer__meta"><a href="mailto:michael@djmichael.com">michael@djmichael.com</a></p>
+      </div>
+      <nav class="site-footer__nav" aria-label="Footer">
+        <ul class="site-footer__list">
+          <li><a href="about.html">About</a></li>
+          <li><a href="faq.html">FAQ</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="vendors.html">Preferred vendors</a></li>
+          <li><a href="https://www.instagram.com/djmichaelo/" target="_blank" rel="noopener">Instagram<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+          <li><a href="https://mcoproductions.com" target="_blank" rel="noopener">Trivia<span class="visually-hidden"> (opens in a new tab)</span></a></li>
+        </ul>
+      </nav>
+      <p class="site-footer__copy">© <span data-year>2026</span> DJ Michael</p>
+    </div>
+  </footer>
+  <!-- /part: footer -->
+</body>
+</html>
